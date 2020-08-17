@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/blog/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/blog/"/>
-  <updated>2020-08-13T13:04:31.761Z</updated>
+  <updated>2020-08-17T15:12:29.008Z</updated>
   <id>https://friats.gitee.io/blog/</id>
   
   <author>
@@ -17,23 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://friats.gitee.io/blog/2020/08/14/hello-world/"/>
-    <id>https://friats.gitee.io/blog/2020/08/14/hello-world/</id>
-    <published>2020-08-14T04:55:12.986Z</published>
-    <updated>2020-08-13T13:04:31.761Z</updated>
+    <title>如何建立属于自己的博客</title>
+    <link href="https://friats.gitee.io/blog/2020/02/17/my-blog/"/>
+    <id>https://friats.gitee.io/blog/2020/02/17/my-blog/</id>
+    <published>2020-02-17T14:55:33.000Z</published>
+    <updated>2020-08-17T15:12:29.008Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h1&gt;&lt;p&gt;​        搭建博客的准备事项如下： </summary>
         
       
     
     
     
+    <category term="Hexo" scheme="https://friats.gitee.io/blog/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://friats.gitee.io/blog/tags/Hexo/"/>
     
   </entry>
   
