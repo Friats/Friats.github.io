@@ -3,11 +3,11 @@
   <title>Friats</title>
   
   
-  <link href="https://friats.gitee.io/blog/atom.xml" rel="self"/>
+  <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
-  <link href="https://friats.gitee.io/blog/"/>
+  <link href="https://friats.gitee.io/"/>
   <updated>2020-08-17T15:12:29.008Z</updated>
-  <id>https://friats.gitee.io/blog/</id>
+  <id>https://friats.gitee.io/</id>
   
   <author>
     <name>friats</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>如何建立属于自己的博客</title>
-    <link href="https://friats.gitee.io/blog/2020/02/17/my-blog/"/>
-    <id>https://friats.gitee.io/blog/2020/02/17/my-blog/</id>
+    <link href="https://friats.gitee.io/2020/02/17/my-blog/"/>
+    <id>https://friats.gitee.io/2020/02/17/my-blog/</id>
     <published>2020-02-17T14:55:33.000Z</published>
     <updated>2020-08-17T15:12:29.008Z</updated>
     
@@ -34,10 +34,10 @@
     
     
     
-    <category term="Hexo" scheme="https://friats.gitee.io/blog/categories/Hexo/"/>
+    <category term="Hexo" scheme="https://friats.gitee.io/categories/Hexo/"/>
     
     
-    <category term="Hexo" scheme="https://friats.gitee.io/blog/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://friats.gitee.io/tags/Hexo/"/>
     
   </entry>
   
