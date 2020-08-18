@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-08-18T02:30:58.908Z</updated>
+  <updated>2020-08-18T10:06:37.432Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kalma Filter学习笔记</title>
+    <link href="https://friats.gitee.io/2020/02/20/kalma-filter/"/>
+    <id>https://friats.gitee.io/2020/02/20/kalma-filter/</id>
+    <published>2020-02-20T14:55:33.000Z</published>
+    <updated>2020-08-18T10:06:37.432Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1 前言&quot;&gt;&lt;/a&gt;1 前言&lt;/h1&gt;&lt;p&gt;Kalma Filter应用十分广泛，比如导航中&lt;/p&gt;
+&lt;p&gt;为什么要使用Kalma</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://friats.gitee.io/categories/Hexo/"/>
+    
+    
+    <category term="Kalma_Filter" scheme="https://friats.gitee.io/tags/Kalma-Filter/"/>
+    
+  </entry>
   
   <entry>
     <title>如何建立属于自己的博客</title>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="如何建立属于自己的博客, Friats">
+    <meta name="keywords" content="Kalma Filter学习笔记, Friats">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>如何建立属于自己的博客 | Friats</title>
+    <title>Kalma Filter学习笔记 | Friats</title>
     <link rel="icon" type="image/png" href="/blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">如何建立属于自己的博客</h1>
+                    <h1 class="description center-align post-title">Kalma Filter学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/blog/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/blog/tags/Kalma-Filter/">
+                                <span class="chip bg-color">Kalma_Filter</span>
                             </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-02-17
+                    2020-02-20
                 </div>
                 
 
@@ -470,14 +470,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    4 Min
+                    6 Min
                 </div>
                 
 
@@ -492,84 +492,159 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>​        搭建博客的准备事项如下：  </p>
+                <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h1><p>Kalma Filter应用十分广泛，比如导航中</p>
+<p>为什么要使用Kalma Filter呢？</p>
+<p>因为我们生活中的系统存在许多不确定性：</p>
 <ul>
-<li>Hexo</li>
-<li>Node.js</li>
+<li>并不存在完美的数学模型</li>
+<li>大部分的系统模型不可控，也很难建模</li>
+<li>测量传感器自身存在误差</li>
 </ul>
+<p>如何来理解Kalma Filter呢？</p>
+<p><img src="0.jpg" alt="举个栗子！"></p>
+<p>让一个人去测量一枚硬币的大小，测量结果为Z_k</p>
+<p>k意味第k次测量</p>
+<p>假设测量结果为</p>
+<p>Z_1 = 50.2mm</p>
+<p>Z_2 = 50.1mm</p>
+<p>Z_3 = 50.4mm</p>
+<p>….</p>
+<p>这时我们想要知道硬币真实的数据，只需要把所有数据加起来取平均值就可以了，公式如下，我们将他处理一下：</p>
+<p><img src="1.png"></p>
+<p>这里我们可以知道，当k越大，1/k越趋近于0</p>
+<p><img src="2.png"></p>
+<p>也就是说，当k足够大的时候，后续的测试结果就不那么重要了</p>
+<p>我们继续处理这个式子变成如下：</p>
+<p><img src="3.png" alt="①式"></p>
+<p>我们来这么理解：</p>
+<p>当前的估计值 = 上一次的估计值 + 系数 * （当前测量值 - 上一次的估计值）</p>
+<p>而这个系数K就是卡尔曼增益（因数）</p>
+<p>从这个式子里我们可以看到，新的估计值只与上一次的估计只有关，上一次的估计值又只与上上一次的估计值有关，这是一种递归</p>
+<p>在卡尔曼中，你不需要很久以前的数据，只需要上一次的就足够了</p>
+<p>这里我们引入一个新的概念：</p>
+<p>估计误差：E_est  </p>
+<p>测量误差：E_mea</p>
+<p>E：Error</p>
+<p>est：Estimate</p>
+<p>mea：Measurement</p>
+<p>而K就等于：</p>
+<p><img src="4.png"></p>
+<p>在k时刻，当E_est_k-1 &gt;&gt;  E_mea_k 时：K→1，①式变为：</p>
+<p><img src="5.png"></p>
+<p>意味当k-1时的估计误差远大于第k次的测量误差，那么我们的估计值X_k就很趋近于测量值Z_k</p>
+<p>同样，在k时刻，当E_est_k-1 &lt;&lt;  E_mea_k 时：K→0，①式变为：</p>
+<p><img src="6.png"></p>
+<p>意味当我们的估计误差足够大的时候，我们选择更相信测量值</p>
+<p>有了上面这些东西，我们就可以着手这个简单的问题了</p>
 <ul>
-<li><p>github账号，或者gitee账号</p>
-<p>本次所使用环境为Windows，linux也可按照同样的方式安装，步骤略有不同   </p>
+<li>计算：<img src="4.png"></li>
+<li>计算：<img src="7.png"></li>
+<li>更新：<img src="8.png"></li>
+</ul>
+<p>有了这三个公式，让我们来试试下面这个问题：</p>
+<p>有一个条度为<del>50mm</del>的线，我们想要知道它的确切长度，但幸运的是你的<del>测量误差</del>尺子十分的理想，你觉得它的误差为3mm，但不幸运的是你的<del>估计误差</del>估计很不准，有5mm的误差，这时我们想要知道这条线到底有多长，我们需要结合两个测量</p>
+<p>假设我们得出了以下数据：</p>
+<ul>
+<li>第一次的估计值=40mm</li>
+<li>估计误差5mm</li>
+<li>第一次的测量值=51mm</li>
+<li>测量误差3mm</li>
+</ul>
+<p>我们可以借助三个公式用Excel表格进行计算，数据输出如下：</p>
+<p><img src="9.png"></p>
+<p>将公式输入Excel表格并求解画出图像</p>
+<p><img src="10.png"></p>
+<p>可以看到当我们进行五次迭代以后，数据已经非常接近真实值，至此，前言结束，Excal公式如下，想动手的朋友可以自己去试试：</p>
+<ul>
+<li>计算部分从第三行开始，所以这里直接放公式</li>
+<li>D3=D2+E3*(B3-D2)</li>
+<li>E3=F2/(F2+C3)</li>
+<li>F3=(1-E3)*F2</li>
+</ul>
+<h1 id="2-进阶部分"><a href="#2-进阶部分" class="headerlink" title="2 进阶部分"></a>2 进阶部分</h1><p>通过上述栗子我们可以大致了解到Kalman Filter基本思想，但也许有人会说上面的例子里直接数据求算数平均不是更快么？</p>
+<p>确实，在一些比较普通的系统中，Kalman Filter的作用并没有那么明显，但在一些复杂系统中，Kalman Filter能发挥出更大的优势</p>
+<p>回归正题，我们来看下面一个栗子<del>（数据融合）</del>：</p>
+<p>如果我们想要知道一个物体的真实重量，那么我们最简单的办法就是找个秤称一下，但是如果一个称不准呢，那么我们可以再找一个秤，得到两个数据以及两个秤的标准差：</p>
+<ul>
+<li>Z_1 = 30g</li>
+<li>Z_2 = 32g</li>
+<li>σ_1 = 2g</li>
+<li>σ_2 = 3g</li>
+</ul>
+<p><img src="11.png" alt="一个标准的正态分布图"></p>
+<p>两个正态分布图会有交叉的部分，而如果我们想要知道真实的数据，那么这个真实的数据将会落在交叉的部分，并且会更靠近σ_1那部分</p>
+<p><img src="12.png" alt="大概就是这个样子，画的不好见谅"></p>
+<p>由此，我们写出一个公式估计真实值Z：</p>
+<p><img src="13.png"></p>
+<p>K依然是卡尔曼增益，在这里，我们需要求解K，使得方差最小</p>
+<p><img src="14.png"></p>
+<p>由方差的性质可以将这两个分开</p>
+<p><img src="15.png"></p>
+<p>将σ_1 =2g和 σ_2=3g带入</p>
+<p>可以得到K=0.2</p>
+<p>带入公式：</p>
+<p><img src="13.png"></p>
+<p>得出最优估计值Z=30.4g</p>
+<p>可以计算出它的σ = 1.79</p>
+<p>再来看一个例子<del>（协方差矩阵）方差协方差在一个矩阵中表现出来</del>：</p>
+<p><img src="16.png"></p>
+<hr>
+<p>状态空间表达：</p>
+<p><img src="17.png"></p>
+<p>一个简单的栗子，弹簧系统的栗子，F是力，x位移，k弹性系数，B阻尼系数，m质量</p>
+<p>得出方程：</p>
+<p><img src="18.png"></p>
+<p>将上面的公式用矩阵来表示：</p>
+<p><img src="19.png"></p>
+<p>我们可以将其归纳为：</p>
+<p><img src="20.png"></p>
+<p>这里的是连续形式，X(t)随时间变化</p>
+<p>而我们也可以把它写成离散形式：</p>
+<p><img src="21.png"></p>
+<p>这里的下标k、k-1、k+1等都是时间单位</p>
+<p>但现实世界中存在许多不确定性，我们现有的模型不能很好的反应实际情况，所以我们的模型需要改变一下：</p>
+<p><img src="22.png"></p>
+<p>这里的w_k-1和v_k分别代表过程噪音和测量噪音</p>
+<p>一式计算结果</p>
+<p>二试测量结果</p>
+<p>这就是状态空间方程</p>
+<hr>
+<p>虽然过程噪声不可测量，但是我们可以用正态分布来表示</p>
+<ul>
+<li><p>P(w)~(0,Q)0期望，Q协方差矩阵</p>
+</li>
+<li><p>Q=E[w,w^T]</p>
+</li>
+<li><p><img src="23.png"></p>
 </li>
 </ul>
-<h1 id="2-环境准备以及软件安装工作"><a href="#2-环境准备以及软件安装工作" class="headerlink" title="2.环境准备以及软件安装工作"></a>2.环境准备以及软件安装工作</h1><h2 id="2-1-git"><a href="#2-1-git" class="headerlink" title="2.1 git"></a>2.1 git</h2><p>​        前往<a target="_blank" rel="noopener" href="https://git-scm.com/download">官网</a>下载对应操作系统的Git版本，此处无脑下一步即可</p>
-<p>​        安装完成之后使用win+r组合键打开运行，输入cmd回车进入命令行，输入git会弹出如下信息，此为安装成功</p>
-<p>​    <img src="5-17-1.png"></p>
-<h2 id="2-2-Node-js"><a href="#2-2-Node-js" class="headerlink" title="2.2 Node.js"></a>2.2 Node.js</h2><p>前往<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">官网</a>下载长期支持版，此处无脑下一步即可</p>
-<h2 id="2-3-Hexo"><a href="#2-3-Hexo" class="headerlink" title="2.3 Hexo"></a>2.3 Hexo</h2><p>Git和Node.js安装成功之后，需要创建一个用来存放博客的文件夹，在此创建名为blog的文件夹，此处命名按个人喜好，但不要是中文，下面就可以开始安装Hexo了</p>
-<p>打开所创建文件夹，下文中均以blog指代，右键点击Git Bash Here<del>注 在Git Bash中不能使用传统Ctrl+V进行粘贴，建议右键粘贴</del></p>
-<p><code>npm install -g hexo-cli</code></p>
-<p><code>hexo init</code></p>
-<p>注 此处hexo init是用git clone拉取远端文件，建议在执行这一步之前先尝试如下几个链接，若能成功打开即可直接执行hexo init，若不能打开，建议修改Hosts文件</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/">git官网</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/mashirozx/Sakura">gitclone</a></p>
-<p>第一个能打开，第二个点击下图中Download ZIP，若能下载，则跳过如下步骤直接hexo init即可</p>
-<p><img src="5-17-4.png"></p>
-<p>如果github官网打不开建议魔法上网，然后再试一次，若还是不行建议访问<a target="_blank" rel="noopener" href="https://www.ipaddress.com/">这个地址</a></p>
-<p><img src="5-17-2.png"></p>
-<p>输入github.com回车</p>
-<p><img src="5-17-3.png"></p>
-<p>复制图中 IP Address后面的内容，找到C盘(系统盘)C:\Windows\System32\drivers\etc路径下的HOSTS文件<del>这个文件并没有后缀，有后缀的文件为电脑杀毒软件留下的副本用于恢复的，可以可以不用管</del></p>
-<p>右键用记事本打开，在最后一行输入：</p>
-<p><code>*** github.com</code></p>
-<p>将你刚才复制的IP地址粘贴到这个***的位置并保存，如果手动输入，记得千万要在IP地址和网址中间加上空格，操作完成后win+r打开命令行，断开魔法上网，输入ipconfig回车，在输入ping github.com，若能ping通，则直接打开github.com即可</p>
-<p>若第二个无法下载，同样访问<a target="_blank" rel="noopener" href="https://www.ipaddress.com/">这个地址</a></p>
-<p>输入：</p>
-<p><code>codeload.github.com</code></p>
-<p><code>raw.githubusercontent.com</code></p>
-<p>并重复上面那个步骤，将IP地址填入HOSTS文件当中，命令行执行ipconfig，在尝试一次下载</p>
+<p>同理，P(v)~(0,R)0期望，R协方差矩阵，推理过程一样，这里就不写了</p>
 <hr>
-<p>上述步骤完成后，在Git Bash中输入：</p>
-<p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code></p>
-<p>组合命令，hexo clean是清除缓存，hexo g生成博客静态内容，hexo s本地预览</p>
-<p>这里如果是第一次运行，可能要等的久一点，成功之后会有一句：</p>
-<p><code>INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</code></p>
-<p>复制其中localhost:4000到浏览器中粘贴并回车，进行预览，同时如果在文件夹内修改内容也会上传到你正在预览的网页中，只需要刷新就可更新出新内容，这里Ctrl+C可以推出预览</p>
-<p>放一张成功之后的图:</p>
-<p><img src="zan.png"></p>
+<p>用数据融合的思想来处理一下我们的公式</p>
+<p>先验：</p>
+<p><img src="35.png"></p>
+<p>后验：</p>
+<p><img src="24.png"></p>
+<p>X-_k为先验估计，K与误差大小息息相关K属于[0,H-]，为了量化误差，我们引入E_k</p>
+<p><img src="25.png"></p>
+<p>这里的x_k是真实值，X_k是估计值，化简的出：</p>
+<p><img src="26.png"></p>
+<p>将结果带入原式：</p>
+<p><img src="27.png"></p>
+<p><img src="28.png"></p>
+<p>当测量结果误差小的时候，K_k=H-，当测量误差很大的时候，K_k=0，至此我们已经推导出卡尔曼增益系数K</p>
 <hr>
-<p>但这个时候，我们的网站只能我们自己看得见，想让别人看见我们需要将它推送到云端上去，这里选择国内访问较快的gitee</p>
-</li>
-</ul>
-<h2 id="2-4-gitee配置"><a href="#2-4-gitee配置" class="headerlink" title="2.4 gitee配置"></a>2.4 gitee配置</h2><p>​        上<a target="_blank" rel="noopener" href="https://gitee.com/">gitee主页</a>注册账户</p>
-<p>​        创建一个仓库：</p>
-<p>​        <img src="5-17-5.png"></p>
-<p>​        仓库名称为：仓库名称和路径都可以按照自己喜好（别是中文就好）</p>
-<p>​        <img src="5-17-6.png"></p>
-<p>​        生成之后会有一个路径，复制下来</p>
-<p>​        我们转到我们的blog文件夹，打开文件夹下的_config.yml</p>
-<p>​        在最后一行deploy中修改type和repo的值</p>
-<p>​        <code>type: git</code></p>
-<p>​        <code>repo: https://gitee.com/****    # 仓库的URL</code></p>
-<p>​        修改之后保存，这时候我们需要安装插件，在Git Bash中输入以下内容一个一个执行</p>
-<p>​        <code>npm install hexo-deployer-git --save    # 安装git插件</code></p>
-<p>​        <code>git config --global user.email *********@qq.com    # 设置gitee邮箱（gitee的注册邮箱）</code></p>
-<p>​        <code>git config --global user.name '****'    # 设置用户名（git的注册昵称）</code></p>
-<p>​        <code>hexo d    # 上传到gitee</code></p>
-<p>​        在上传的过程中可能会弹出让你从新输入账号以及密码的窗口，输入就好，这一步可能时间有些长，不用担心放着让他继续进行就好</p>
-<p>​        上传成功后，仓库中会有你本地blog的内容</p>
-<p>​        点击图中位置的Gitee pages</p>
-<p>​        <img src="5-17-7.png"></p>
-<p>​        输入图中内容点击更新</p>
-<p>​        <img src="5-17-8.png"></p>
-<p>​        这时候点击出现的网站地址就好，本次网站建立到此结束</p>
-<hr>
-<h2 id="2-5-需要注意的地方"><a href="#2-5-需要注意的地方" class="headerlink" title="2.5 需要注意的地方"></a>2.5 需要注意的地方</h2><ul>
-<li>如果过程中出了问题，改不回来了，就直接干掉本地的blog文件夹，从头再来一遍即可</li>
-<li>若是修改了本地文件预览通过了，上传之后，记得更新Gitee Pages服务，才能生成，若是还没有反应，直接shift+f5刷新即可</li>
-</ul>
+<p><img src="29.png"></p>
+<p><img src="30.png"></p>
+<p>有了这个式子，我们就可利用卡尔曼滤波器来预测状态变量的值了</p>
+<p>如此一来，我们总结一下我们所得到的式子将上面的X均带上帽子：</p>
+<p><img src="31.png"></p>
+<p><img src="32.png"></p>
+<p>这就是卡尔曼滤波器的全部五个公式了</p>
+<h1 id="3-示例"><a href="#3-示例" class="headerlink" title="3 示例"></a>3 示例</h1><p><img src="33.png"></p>
+<p><img src="34.png"></p>
+<p>大家可以自行使用这个例子代入合适的数据去计算结果，其中除手写部分均为Math Type输入截图，总结不易希望大家喜欢。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7eR/?spm_id_from=333.788.videocard.2">https://www.bilibili.com/video/BV1ez4y1X7eR/?spm_id_from=333.788.videocard.2</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -613,7 +688,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://friats.gitee.io/blog/2020/02/17/my-blog/">https://friats.gitee.io/blog/2020/02/17/my-blog/</a>
+                    <a href="https://friats.gitee.io/blog/2020/02/20/kalma-filter/">https://friats.gitee.io/blog/2020/02/20/kalma-filter/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -651,8 +726,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/blog/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/blog/tags/Kalma-Filter/">
+                                    <span class="chip bg-color">Kalma_Filter</span>
                                 </a>
                             
                         </div>
@@ -820,9 +895,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/blog/2020/02/20/kalma-filter/">
                     <div class="card-image">
@@ -840,9 +916,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -855,6 +931,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -870,7 +947,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/blog/2020/02/17/my-blog/">
@@ -904,7 +981,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
