@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-08-18T10:06:37.432Z</updated>
+  <updated>2020-08-21T09:49:41.939Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ECC加密算法</title>
+    <link href="https://friats.gitee.io/2020/03/02/ecc/"/>
+    <id>https://friats.gitee.io/2020/03/02/ecc/</id>
+    <published>2020-03-02T09:52:31.000Z</published>
+    <updated>2020-08-21T09:49:41.939Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;原理介绍&quot;&gt;&lt;a href=&quot;#原理介绍&quot; class=&quot;headerlink&quot; title=&quot;原理介绍&quot;&gt;&lt;/a&gt;原理介绍&lt;/h1&gt;&lt;p&gt;在ECC中，利用特殊形式的椭圆曲线，其方程如下：&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="ECC" scheme="https://friats.gitee.io/categories/ECC/"/>
+    
+    
+    <category term="加密算法" scheme="https://friats.gitee.io/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Kalma Filter学习笔记</title>
     <link href="https://friats.gitee.io/2020/02/20/kalma-filter/"/>
     <id>https://friats.gitee.io/2020/02/20/kalma-filter/</id>
     <published>2020-02-20T14:55:33.000Z</published>
-    <updated>2020-08-18T10:06:37.432Z</updated>
+    <updated>2020-08-21T09:40:11.272Z</updated>
     
     
       
@@ -35,7 +61,7 @@
     
     
     
-    <category term="Hexo" scheme="https://friats.gitee.io/categories/Hexo/"/>
+    <category term="Kalma_Filter" scheme="https://friats.gitee.io/categories/Kalma-Filter/"/>
     
     
     <category term="Kalma_Filter" scheme="https://friats.gitee.io/tags/Kalma-Filter/"/>

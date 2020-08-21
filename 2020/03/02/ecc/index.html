@@ -1,0 +1,1592 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ECC加密算法, Friats">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ECC加密算法 | Friats</title>
+    <link rel="icon" type="image/png" href="/blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/blog/css/my.css">
+
+    <script src="/blog/libs/jquery/jquery.min.js"></script>
+	
+<meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/blog/atom.xml" title="Friats" type="application/atom+xml">
+<link rel="stylesheet" href="/blog/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/blog/" class="waves-effect waves-light">
+                    
+                    <img src="/blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Friats</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Friats</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/blog/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ECC加密算法</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/blog/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/blog/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">加密算法</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/blog/categories/ECC/" class="post-category">
+                                ECC
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-03-02
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2020-08-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    3.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    16 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="原理介绍"><a href="#原理介绍" class="headerlink" title="原理介绍"></a>原理介绍</h1><p>在ECC中，利用特殊形式的椭圆曲线，其方程如下：</p>
+<p><img src="0.png"></p>
+<p>其中：</p>
+<p><img src="1.png"></p>
+<p>这个是用来排除单数曲线所必须的，其中<em>a</em>和<em>b</em>决定了曲线在坐标系的不同形状。</p>
+<p>在开始之前我们需要引入一个定义——Abel（阿贝尔群）：</p>
+<p>数学上是指定义了二元操作运算并且使用“+”表示的一个集合。必须满足以下要求：</p>
+<p>1、封闭性（closure）：如果<em>a</em>和<em>b</em>都是群成员，那么<em>a</em> + <em>b</em>也应该是群成员。</p>
+<p>2、组合性（associativity）：*(a+b)+c=a+(b+c)*</p>
+<p>3、单位元：0值就是单位元。</p>
+<p>4、逆元：<em>a</em>的逆元就是-<em>a</em>。</p>
+<p>当然阿贝尔群除了上面的性质外还满足交换律公理a<em>b=b</em>a。</p>
+<p>同样在椭圆曲线也可以定义阿贝尔群：</p>
+<p>1、设<em>O</em>为单位元，对曲线上所有的点<em>P</em>都满足P+O=P。</p>
+<p>2、对点<em>P</em>（<em>x</em>，<em>y</em>）有点<em>Q</em>（<em>x</em>，-<em>y</em>）满足<em>P+Q=O</em>，则称点<em>Q</em>为<em>P</em>的逆元，记为-<em>P</em>，在此基础上我们可以定义减法规则：<em>P-Q=P+(-Q)</em> 。</p>
+<p>3、异点相加：对不同且不互逆的点<em>P</em>（<em>x</em>，<em>y</em>）与<em>Q</em>（<em>a</em>，<em>b</em>），即<em>x</em>≠<em>a</em>，Ep（<em>a</em>，<em>b</em>）则：<em>P(x , y)+Q(c , d)=S(i , j)</em></p>
+<p>其中：</p>
+<p><img src="2.png"></p>
+<p>4、倍点原则：对于一个点<em>P</em>（<em>x</em>，<em>y</em>），若<em>P</em>≠-<em>P</em>，即<em>y</em>≠0，Ep（<em>a</em>，<em>b</em>）则有：</p>
+<p><em>P(x,y)+P(x,y)=2P(x,y)=S(i.j)</em></p>
+<p>其中：</p>
+<p><img src="3.png"></p>
+<p>并不是所有的点都可以求倍点，同样也不是所有的点都可以用来建立椭圆曲线系统，所以就引入了有限域椭圆曲线点的阶。</p>
+<p>设<em>P</em>是椭圆Ep（<em>a</em>，<em>b</em>）上的点，若存在最小的正整数<em>n</em>使得：<em>nP=O</em>（O是无穷远的点）则称<em>n</em>为<em>P</em>的阶，若<em>n</em>不存在，则称<em>P</em>是无限阶的。</p>
+<p>若一个群<em>G</em>的每一个元都是<em>G</em>的某一个固定元<em>a</em>的乘方，则称<em>G</em>为循环群记为：</p>
+<p><img src="4.png"></p>
+<p><em>a</em>称为<em>G</em>的一个生成元。</p>
+<p>在某些条件下，椭圆曲线上所有的点构成一个循环群，并且一定存在一个本原元，它的幂值生成了整个群（这就是离散对数问题）。</p>
+<p>给定一个椭圆曲线E，确定本原元<em>P</em>和一个元素<em>T</em>，那么离散对数问题就是找到整数<em>D</em>，满足：<em>P+P+P+….+P=DP=T</em></p>
+<p>在密码体制中，D通常为整数，也是私钥，曲线上的点T是公钥。</p>
+<p>至此，椭圆曲线的原理基本以阐述完毕，总结如下：</p>
+<p>椭圆曲线Ep（<em>a</em>，<em>b</em>）上的点<em>G</em>，<em>n</em>为<em>G</em>的阶*(nG=O∞)<em>，</em>d<em>为小于</em>n<em>的整数。考虑方程：</em>P=dG*</p>
+<p>其中<em>P,G</em>属于<em>E</em>，<em>d</em>为整数。</p>
+<p>由<em>d</em>，<em>G</em>计算<em>P</em>很容易，而有<em>P</em>,<em>G</em>求<em>d</em>计算上是不可行的。</p>
+<p>这就是椭圆曲线密码体制安全的基础，又叫做椭圆曲线的离散对数问题。</p>
+<p>其中点<em>G</em>为基点，<em>d</em>（<em>d</em>&lt;<em>n</em>）为私有密钥，<em>P</em>为公开密钥。</p>
+<h1 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h1><p>取一素数<em>p</em>，两个参数<em>a</em>，<em>b</em>，得到Ep（<em>a</em>，<em>b</em>）。</p>
+<p>利用公式验证所得曲线为可用曲线，判断公式：</p>
+<p><img src="1.png"></p>
+<p>画出椭圆曲线的图，得知隐函数的情况下调用ezplot画出椭圆曲线的图。</p>
+<p>画出曲线的散点图，计算方法与公式如下：</p>
+<p>计算<em>x</em>=0至*x=(p-1)*中，计算：</p>
+<p><img src="5.png"></p>
+<p>其中若能求的整数平方根的数则为有效点，同时计算出:</p>
+<p><img src="6.png"></p>
+<p><img src="7.png"></p>
+<p>取基点<em>G</em>，由<em>G</em>计算出曲线的阶<em>n</em>，计算公式为：*(n-1)G=-G*</p>
+<p>写出-<em>G</em>的计算公式：*-G(x ,z)=G(x ,-1y)mod p = G(x ,p-y)*</p>
+<p>选取私有密钥<em>key</em>（<em>key</em>&lt;<em>n</em>），计算公开密钥<em>K=keyG</em></p>
+<p>有了上述内容，可以着手设计加密解密步骤了。</p>
+<p>加密步骤：输入一个随机数<em>r</em>（<em>r</em>&lt;<em>n</em>）作为加密方的私钥，利用输入的随机数生成点:</p>
+<p><img src="8.png"></p>
+<p> G_r为加密方的公钥，用到的公式如下：</p>
+<p><img src="9.png"></p>
+<p>K_r为共享密钥，计算公示如下：</p>
+<p><img src="10.png"></p>
+<p>将明文转化为密文，利用K_r的x轴坐标作为加密密钥，公式如下：</p>
+<p><img src="11.png"></p>
+<p>解密步骤：利用加密方传回的密文<em>C</em>和G_r求解<em>M</em>，在知道  和己方私钥的情况下求解<em>M</em>是十分容易的，先解出共享密钥K_r，利用其x轴坐标用简单的公式：</p>
+<p><img src="12.png"></p>
+<p>最终得到想要的明文<em>M</em>。</p>
+<p>思维导图如下：</p>
+<p><img src="13.png"></p>
+<h1 id="运行结果演示"><a href="#运行结果演示" class="headerlink" title="运行结果演示"></a>运行结果演示</h1><p>代码见附录，这里只演示。</p>
+<p>请输入a的值：10</p>
+<p>请输入b的值：5</p>
+<p>请输入p的值：23</p>
+<p>请确曲线：1确认，0退出</p>
+<p>1</p>
+<p><img src="14.png"></p>
+<p>椭圆曲线的散列图为：</p>
+<p>22 - - - - - - - - - - 1 - - - - - - - - - - - - </p>
+<p>21 - - - - - - - 1 - - - - - - - - - - - - - - - </p>
+<p>20 - - - - - - - - - - - - - 1 - - - - - - - - - </p>
+<p>19 - 1 - 1 - - - - - - - - - - - - - - - 1 - - - </p>
+<p>18 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>17 - - - - - - - - - - - - 1 - - - - - - - - - - </p>
+<p>16 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>15 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>14 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>13 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>12 - - - - - - - - - - - - - - - - 1 - - - - - - </p>
+<p>11 - - - - - - - - - - - - - - - - 1 - - - - - - </p>
+<p>10 - - - - - - - - - - - -  - - - - - - - - - - - </p>
+<p>9 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>8 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>7 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>6  - - - - - - - - - - - - 1 - - - - - - - - - - </p>
+<p>5 - - - - - - - - - - - - - - - - - - - - - - - </p>
+<p>4 - 1 - 1 - - - - - - - - - - - - - - - 1 - - - </p>
+<p>3 - - - - - - - - - - - - - 1 - - - - - - - - - </p>
+<p>2 - - - - - - - 1 - - - - - - - - - - - - - - - </p>
+<p>1 - - - - - - - - - - 1 - - - - - - - - - - - - </p>
+<p>0 - - - - - - - - - - - - - - - - - - - - - 1 - </p>
+<p>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22</p>
+<p>1：在如上坐标系中选一个值为G的坐标</p>
+<p>1：请输入选取的x坐标值：10</p>
+<p>1：请输入选取的y坐标值：1</p>
+<p>1：请输入私钥小key（&lt;9）：8</p>
+<p>2：请输入一个整数k（&lt;9）用于求kG和kQ：7</p>
+<p>2：请输入需要加密的字符串:ECC加密算法</p>
+<p>密文为：(16,11),1104-(16,11),1072-(16,11),1072-(16,11),338432-(16,11),375904-(16,11),506224-(16,11),445776-</p>
+<p>1解密得到明文：ECC加密算法</p>
+<p>结束</p>
+<h1 id="ECC加密算法的优点"><a href="#ECC加密算法的优点" class="headerlink" title="ECC加密算法的优点"></a>ECC加密算法的优点</h1><p>1、安全性高：攻击有限域上的离散对数问题可以使用指数积分法，其运算的复杂度</p>
+<p><img src="15.png"></p>
+<p>其中<em>p</em>是模数（为素数）。而它对于椭圆曲线上的离散对数问题并不有效。目前攻击椭圆曲线上离散对数问题的方法只有适合攻击任何循环群上离散对数问题的大步小步法，其运算复杂度为：</p>
+<p><img src="16.png"></p>
+<p>其中<em>P_max</em>是椭圆曲线所形成的Abel群的阶的最大因子。因此，椭圆曲线密码体制比基于有限域上的离散对数问题的公钥体制更加安全</p>
+<p>2、密钥量小：由攻击两者的算法复杂度可知，在实现相同的安全性能条件下，椭圆曲线密码体制所需的密钥量远比基于有限域上的离散对数问题的公钥体制的密钥量小</p>
+<p>3、灵活性好：有限域GF(q)一定情况下，其上的循环群(即GF(q)-{0})就定了。而GF(q)上的椭圆曲线可以通过改变曲线参数，得到不同的曲线，形成不同的循环群。因此，椭圆曲线具有丰富的群结构和多选择性。</p>
+<p>正是由于椭圆曲线具有丰富的群结构和多种选择性，并可在保持和RSA/DSA体制同样安全性能的前提下，大大缩短了密钥长度(目前160比特足以保证安全性)，因而在密码领域有着广阔的引用前景。下表给出了椭圆曲线密码体制和RSA/DSA体制在保持同等安全的条件下各自所需的密钥长度。</p>
+<p><img src="17.png"></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><pre class=" language-python"><code class="language-python"><span class="token number">1</span><span class="token punctuation">.</span>    <span class="token comment" spellcheck="true">#-*- codeing = utf-8 -*-  </span>
+<span class="token number">2</span><span class="token punctuation">.</span>    <span class="token comment" spellcheck="true">#@Time : 2020/2/24 11:46  </span>
+<span class="token number">3</span><span class="token punctuation">.</span>    <span class="token comment" spellcheck="true">#@Author : Friats  </span>
+<span class="token number">4</span><span class="token punctuation">.</span>    <span class="token comment" spellcheck="true">#@File : ECC.py  </span>
+<span class="token number">5</span><span class="token punctuation">.</span>    <span class="token comment" spellcheck="true">#@Software : PyCharm  </span>
+<span class="token number">6</span><span class="token punctuation">.</span>    <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> mp  
+<span class="token number">7</span><span class="token punctuation">.</span>    <span class="token keyword">from</span> sympy<span class="token punctuation">.</span>parsing<span class="token punctuation">.</span>sympy_parser <span class="token keyword">import</span> parse_expr  
+<span class="token number">8</span><span class="token punctuation">.</span>    <span class="token keyword">from</span> sympy <span class="token keyword">import</span> plot_implicit  
+<span class="token number">9</span><span class="token punctuation">.</span>      
+<span class="token number">10</span><span class="token punctuation">.</span>    <span class="token triple-quoted-string string">""" 
+11.    变量定义如下 
+12.    a:椭圆曲线参数a 
+13.    b:椭圆曲线参数b 
+14.    p:椭圆曲线参数p 
+15.    n:曲线的阶n 
+16.    G_x:基点G的x轴坐标 
+17.    G_y:基点G的y轴坐标 
+18.    KEY_x:解密方公钥x轴坐标 
+19.    KEY_y:解密方公钥y轴坐标 
+20.    key:解密方私钥 
+21.    K_G_x:加密方公钥x轴坐标 
+22.    K_G_y:加密方公钥y轴坐标 
+23.    K_Q_x:共享密钥x轴坐标 
+24.    K_Q_y:共享密钥y轴坐标 
+25.    """</span>  
+<span class="token number">26</span><span class="token punctuation">.</span>    <span class="token triple-quoted-string string">""" 
+27.    函数定义如下 
+28.    get_inverse(): 取逆元 
+29.    get_gcd():     取最大公约数 
+30.    get_np():      求解公式Q=np 
+31.    get_rank():    求曲线的阶n 
+32.    get_param():   计算p和-p 
+33.    get_graph():   求解并计算散点图 
+34.    get_ng():      计算nG 
+35.    """</span>  
+<span class="token number">36</span><span class="token punctuation">.</span>      
+<span class="token number">37</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_inverse</span><span class="token punctuation">(</span>mu<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">38</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+39.        取逆元 
+40.        :param mu: 输入参数1 
+41.        :param p: 曲线的参数p 
+42.        :return: 参数1的逆元，-1逆元不存在 
+43.        """</span>  
+<span class="token number">44</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">45</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">*</span>mu<span class="token punctuation">)</span><span class="token operator">%</span>p <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>  
+<span class="token number">46</span><span class="token punctuation">.</span>                <span class="token keyword">return</span> i  
+<span class="token number">47</span><span class="token punctuation">.</span>        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>  
+<span class="token number">48</span><span class="token punctuation">.</span>      
+<span class="token number">49</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_gcd</span><span class="token punctuation">(</span>zi<span class="token punctuation">,</span> mu<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">50</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+51.        用递归求出最大公约数 
+52.        :param zi: 输入参数1 
+53.        :param mu: 输入参数2 
+54.        :return: 最大公约数 
+55.        """</span>  
+<span class="token number">56</span><span class="token punctuation">.</span>        <span class="token keyword">if</span> mu<span class="token punctuation">:</span>  
+<span class="token number">57</span><span class="token punctuation">.</span>            <span class="token keyword">return</span> get_gcd<span class="token punctuation">(</span>mu<span class="token punctuation">,</span> zi<span class="token operator">%</span>mu<span class="token punctuation">)</span>  
+<span class="token number">58</span><span class="token punctuation">.</span>        <span class="token keyword">else</span><span class="token punctuation">:</span>  
+<span class="token number">59</span><span class="token punctuation">.</span>            <span class="token keyword">return</span> zi  
+<span class="token number">60</span><span class="token punctuation">.</span>      
+<span class="token number">61</span><span class="token punctuation">.</span>      
+<span class="token number">62</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_np</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> y2<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">63</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+64.        求解公式Q=np 
+65.        :param x1: 点1的x轴坐标 
+66.        :param y1: 点1的y轴坐标 
+67.        :param x2: 点2的x轴坐标 
+68.        :param y2: 点2的y轴坐标 
+69.        :param a: 曲线参数a 
+70.        :param p: 曲线参数p 
+71.        :return: 返回Q的坐标 
+72.        """</span>  
+<span class="token number">73</span><span class="token punctuation">.</span>        flag <span class="token operator">=</span> <span class="token number">1</span>  <span class="token comment" spellcheck="true"># 定义符号位（+/-）  </span>
+<span class="token number">74</span><span class="token punctuation">.</span>      
+<span class="token number">75</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 如果 p=q  k=(3x2+a)/2y1mod p  </span>
+<span class="token number">76</span><span class="token punctuation">.</span>        <span class="token keyword">if</span> x1 <span class="token operator">==</span> x2 <span class="token operator">and</span> y1 <span class="token operator">==</span> y2<span class="token punctuation">:</span>  
+<span class="token number">77</span><span class="token punctuation">.</span>            zi <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>x1 <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> a  <span class="token comment" spellcheck="true"># 计算分子      【求导】  </span>
+<span class="token number">78</span><span class="token punctuation">.</span>            mu <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> y1    <span class="token comment" spellcheck="true"># 计算分母  </span>
+<span class="token number">79</span><span class="token punctuation">.</span>      
+<span class="token number">80</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 若P≠Q，则k=(y2-y1)/(x2-x1) mod p  </span>
+<span class="token number">81</span><span class="token punctuation">.</span>        <span class="token keyword">else</span><span class="token punctuation">:</span>  
+<span class="token number">82</span><span class="token punctuation">.</span>            zi <span class="token operator">=</span> y2 <span class="token operator">-</span> y1  
+<span class="token number">83</span><span class="token punctuation">.</span>            mu <span class="token operator">=</span> x2 <span class="token operator">-</span> x1  
+<span class="token number">84</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> zi<span class="token operator">*</span> mu <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>  
+<span class="token number">85</span><span class="token punctuation">.</span>                flag <span class="token operator">=</span> <span class="token number">0</span>        <span class="token comment" spellcheck="true"># 符号0为-（负数）  </span>
+<span class="token number">86</span><span class="token punctuation">.</span>                zi <span class="token operator">=</span> abs<span class="token punctuation">(</span>zi<span class="token punctuation">)</span>  
+<span class="token number">87</span><span class="token punctuation">.</span>                mu <span class="token operator">=</span> abs<span class="token punctuation">(</span>mu<span class="token punctuation">)</span>  
+<span class="token number">88</span><span class="token punctuation">.</span>      
+<span class="token number">89</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 将分子和分母化为最简  </span>
+<span class="token number">90</span><span class="token punctuation">.</span>        gcd_value <span class="token operator">=</span> get_gcd<span class="token punctuation">(</span>zi<span class="token punctuation">,</span> mu<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true"># 最大公約數  </span>
+<span class="token number">91</span><span class="token punctuation">.</span>        zi <span class="token operator">=</span> zi <span class="token operator">//</span> gcd_value            <span class="token comment" spellcheck="true"># 整除  </span>
+<span class="token number">92</span><span class="token punctuation">.</span>        mu <span class="token operator">=</span> mu <span class="token operator">//</span> gcd_value  
+<span class="token number">93</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 求分母的逆元  逆元： ∀a ∈G ，ョb∈G 使得 ab = ba = e  </span>
+<span class="token number">94</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># P(x,y)的负元是 (x,-y mod p)= (x,p-y) ，有P+(-P)= O∞  </span>
+<span class="token number">95</span><span class="token punctuation">.</span>        inverse_value <span class="token operator">=</span> get_inverse<span class="token punctuation">(</span>mu<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">96</span><span class="token punctuation">.</span>        k <span class="token operator">=</span> <span class="token punctuation">(</span>zi <span class="token operator">*</span> inverse_value<span class="token punctuation">)</span>  
+<span class="token number">97</span><span class="token punctuation">.</span>      
+<span class="token number">98</span><span class="token punctuation">.</span>        <span class="token keyword">if</span> flag <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>                   <span class="token comment" spellcheck="true"># 斜率负数 flag==0  </span>
+<span class="token number">99</span><span class="token punctuation">.</span>            k <span class="token operator">=</span> <span class="token operator">-</span>k  
+<span class="token number">100</span><span class="token punctuation">.</span>        k <span class="token operator">=</span> k <span class="token operator">%</span> p  
+<span class="token number">101</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 计算x3,y3 P+Q  </span>
+<span class="token number">102</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+103.            x3≡k2-x1-x2(mod p) 
+104.            y3≡k(x1-x3)-y1(mod p) 
+105.        """</span>  
+<span class="token number">106</span><span class="token punctuation">.</span>        x3 <span class="token operator">=</span> <span class="token punctuation">(</span>k <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">-</span> x1 <span class="token operator">-</span> x2<span class="token punctuation">)</span> <span class="token operator">%</span> p  
+<span class="token number">107</span><span class="token punctuation">.</span>        y3 <span class="token operator">=</span> <span class="token punctuation">(</span>k <span class="token operator">*</span> <span class="token punctuation">(</span>x1 <span class="token operator">-</span> x3<span class="token punctuation">)</span> <span class="token operator">-</span> y1<span class="token punctuation">)</span> <span class="token operator">%</span> p  
+<span class="token number">108</span><span class="token punctuation">.</span>        <span class="token keyword">return</span> x3<span class="token punctuation">,</span>y3  
+<span class="token number">109</span><span class="token punctuation">.</span>      
+<span class="token number">110</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_rank</span><span class="token punctuation">(</span>x0<span class="token punctuation">,</span> y0<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">111</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+112.        计算曲线的阶n 
+113.        :param x0: 输入点的x轴坐标 
+114.        :param y0: 输入点的y轴坐标 
+115.        :param a: 曲线参数a 
+116.        :param p: 曲线参数p 
+117.        :return: 曲线的阶n 
+118.        """</span>  
+<span class="token number">119</span><span class="token punctuation">.</span>        x1 <span class="token operator">=</span> x0             <span class="token comment" spellcheck="true">#-p的x坐标  </span>
+<span class="token number">120</span><span class="token punctuation">.</span>        y1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">*</span>y0<span class="token punctuation">)</span><span class="token operator">%</span>p      <span class="token comment" spellcheck="true">#-p的y坐标  </span>
+<span class="token number">121</span><span class="token punctuation">.</span>        tempX <span class="token operator">=</span> x0  
+<span class="token number">122</span><span class="token punctuation">.</span>        tempY <span class="token operator">=</span> y0  
+<span class="token number">123</span><span class="token punctuation">.</span>        n <span class="token operator">=</span> <span class="token number">1</span>  
+<span class="token number">124</span><span class="token punctuation">.</span>        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>  
+<span class="token number">125</span><span class="token punctuation">.</span>            n <span class="token operator">+=</span> <span class="token number">1</span>  
+<span class="token number">126</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true">#         # 求p+q的和，得到n*p，直到求出阶  </span>
+<span class="token number">127</span><span class="token punctuation">.</span>            p_x<span class="token punctuation">,</span>p_y <span class="token operator">=</span> get_np<span class="token punctuation">(</span>tempX<span class="token punctuation">,</span> tempY<span class="token punctuation">,</span> x0<span class="token punctuation">,</span> y0<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">128</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 如果 == -p,那么阶数+1，返回  </span>
+<span class="token number">129</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> p_x <span class="token operator">==</span> x1 <span class="token operator">and</span> p_y <span class="token operator">==</span> y1<span class="token punctuation">:</span>  
+<span class="token number">130</span><span class="token punctuation">.</span>                <span class="token keyword">return</span> n<span class="token operator">+</span><span class="token number">1</span>  
+<span class="token number">131</span><span class="token punctuation">.</span>            tempX <span class="token operator">=</span> p_x  
+<span class="token number">132</span><span class="token punctuation">.</span>            tempY <span class="token operator">=</span> p_y  
+<span class="token number">133</span><span class="token punctuation">.</span>      
+<span class="token number">134</span><span class="token punctuation">.</span>      
+<span class="token number">135</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_param</span><span class="token punctuation">(</span>x0<span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">136</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+137.        计算P和-P 
+138.        :param x0:点的x轴坐标 
+139.        :param a:曲线参数a 
+140.        :param b:曲线参数b 
+141.        :param p:曲线参数p 
+142.        :return:点P和-P 
+143.        """</span>  
+<span class="token number">144</span><span class="token punctuation">.</span>        y0 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>  
+<span class="token number">145</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">146</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 满足取模约束条件，椭圆曲线Ep(a,b)，p为质数，x,y∈[0,p-1]  </span>
+<span class="token number">147</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> i<span class="token operator">**</span><span class="token number">2</span><span class="token operator">%</span>p <span class="token operator">==</span> <span class="token punctuation">(</span>x0<span class="token operator">**</span><span class="token number">3</span> <span class="token operator">+</span> a<span class="token operator">*</span>x0 <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token operator">%</span>p<span class="token punctuation">:</span>  
+<span class="token number">148</span><span class="token punctuation">.</span>                y0 <span class="token operator">=</span> i  
+<span class="token number">149</span><span class="token punctuation">.</span>                <span class="token keyword">break</span>  
+<span class="token number">150</span><span class="token punctuation">.</span>      
+<span class="token number">151</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 如果y0没有，返回false  </span>
+<span class="token number">152</span><span class="token punctuation">.</span>        <span class="token keyword">if</span> y0 <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>  
+<span class="token number">153</span><span class="token punctuation">.</span>            <span class="token keyword">return</span> <span class="token boolean">False</span>  
+<span class="token number">154</span><span class="token punctuation">.</span>      
+<span class="token number">155</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 计算-y（负数取模）  </span>
+<span class="token number">156</span><span class="token punctuation">.</span>        x1 <span class="token operator">=</span> x0  
+<span class="token number">157</span><span class="token punctuation">.</span>        y1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">*</span>y0<span class="token punctuation">)</span> <span class="token operator">%</span> p  
+<span class="token number">158</span><span class="token punctuation">.</span>        <span class="token keyword">return</span> x0<span class="token punctuation">,</span>y0<span class="token punctuation">,</span>x1<span class="token punctuation">,</span>y1  
+<span class="token number">159</span><span class="token punctuation">.</span>      
+<span class="token number">160</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_graph</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">161</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+162.        求解并计算散点图 
+163.        :param a: 曲线参数a 
+164.        :param b: 曲线参数b 
+165.        :param p: 曲线参数p 
+166.        :return: 返回一个二维数组并打印，大小[p][p] 
+167.        """</span>  
+<span class="token number">168</span><span class="token punctuation">.</span>        x_y <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  
+<span class="token number">169</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 初始化二维数组，将所有的数组元素用-填充  </span>
+<span class="token number">170</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">171</span><span class="token punctuation">.</span>            x_y<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'-'</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  
+<span class="token number">172</span><span class="token punctuation">.</span>      
+<span class="token number">173</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">174</span><span class="token punctuation">.</span>            val <span class="token operator">=</span>get_param<span class="token punctuation">(</span>i<span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 椭圆曲线上的点  </span>
+<span class="token number">175</span><span class="token punctuation">.</span>            <span class="token keyword">if</span><span class="token punctuation">(</span>val <span class="token operator">!=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">176</span><span class="token punctuation">.</span>                x0<span class="token punctuation">,</span>y0<span class="token punctuation">,</span>x1<span class="token punctuation">,</span>y1 <span class="token operator">=</span> val  
+<span class="token number">177</span><span class="token punctuation">.</span>                x_y<span class="token punctuation">[</span>x0<span class="token punctuation">]</span><span class="token punctuation">[</span>y0<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>  
+<span class="token number">178</span><span class="token punctuation">.</span>                x_y<span class="token punctuation">[</span>x1<span class="token punctuation">]</span><span class="token punctuation">[</span>y1<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>  
+<span class="token number">179</span><span class="token punctuation">.</span>      
+<span class="token number">180</span><span class="token punctuation">.</span>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"椭圆曲线的散列图为："</span><span class="token punctuation">)</span>  
+<span class="token number">181</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>              <span class="token comment" spellcheck="true"># i= 0-> p-1  </span>
+<span class="token number">182</span><span class="token punctuation">.</span>            temp <span class="token operator">=</span> p<span class="token number">-1</span><span class="token operator">-</span>i        <span class="token comment" spellcheck="true"># 倒序  </span>
+<span class="token number">183</span><span class="token punctuation">.</span>      
+<span class="token number">184</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 格式化输出1/2位数，y坐标轴  </span>
+<span class="token number">185</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> temp <span class="token operator">>=</span> <span class="token number">10</span><span class="token punctuation">:</span>  
+<span class="token number">186</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>  
+<span class="token number">187</span><span class="token punctuation">.</span>            <span class="token keyword">else</span><span class="token punctuation">:</span>  
+<span class="token number">188</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">"  "</span><span class="token punctuation">)</span>  
+<span class="token number">189</span><span class="token punctuation">.</span>      
+<span class="token number">190</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 输出具体坐标的值，一行  </span>
+<span class="token number">191</span><span class="token punctuation">.</span>            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">192</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>x_y<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>temp<span class="token punctuation">]</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">"  "</span><span class="token punctuation">)</span>  
+<span class="token number">193</span><span class="token punctuation">.</span>            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#换行  </span>
+<span class="token number">194</span><span class="token punctuation">.</span>      
+<span class="token number">195</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true"># 输出 x 坐标轴  </span>
+<span class="token number">196</span><span class="token punctuation">.</span>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"  "</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>  
+<span class="token number">197</span><span class="token punctuation">.</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">198</span><span class="token punctuation">.</span>            <span class="token keyword">if</span> i <span class="token operator">>=</span><span class="token number">10</span><span class="token punctuation">:</span>  
+<span class="token number">199</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>  
+<span class="token number">200</span><span class="token punctuation">.</span>            <span class="token keyword">else</span><span class="token punctuation">:</span>  
+<span class="token number">201</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">"  "</span><span class="token punctuation">)</span>  
+<span class="token number">202</span><span class="token punctuation">.</span>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>  
+<span class="token number">203</span><span class="token punctuation">.</span>      
+<span class="token number">204</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">get_ng</span><span class="token punctuation">(</span>G_x<span class="token punctuation">,</span> G_y<span class="token punctuation">,</span> key<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">205</span><span class="token punctuation">.</span>        <span class="token triple-quoted-string string">""" 
+206.        求解nG 
+207.        :param G_x: G的x轴坐标 
+208.        :param G_y: G的y轴坐标 
+209.        :param key: 解密方私钥 
+210.        :param a: 曲线参数a 
+211.        :param p: 曲线参数p 
+212.        :return: nG的坐标 
+213.        """</span>  
+<span class="token number">214</span><span class="token punctuation">.</span>        temp_x <span class="token operator">=</span> G_x  
+<span class="token number">215</span><span class="token punctuation">.</span>        temp_y <span class="token operator">=</span> G_y  
+<span class="token number">216</span><span class="token punctuation">.</span>        <span class="token keyword">while</span> key <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">:</span>  
+<span class="token number">217</span><span class="token punctuation">.</span>            temp_x<span class="token punctuation">,</span>temp_y <span class="token operator">=</span> get_np<span class="token punctuation">(</span>temp_x<span class="token punctuation">,</span>temp_y<span class="token punctuation">,</span> G_x<span class="token punctuation">,</span> G_y<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">218</span><span class="token punctuation">.</span>            key <span class="token operator">-=</span> <span class="token number">1</span>  
+<span class="token number">219</span><span class="token punctuation">.</span>        <span class="token keyword">return</span> temp_x<span class="token punctuation">,</span>temp_y  
+<span class="token number">220</span><span class="token punctuation">.</span>      
+<span class="token number">221</span><span class="token punctuation">.</span>    <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">222</span><span class="token punctuation">.</span>        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>  
+<span class="token number">223</span><span class="token punctuation">.</span>            a <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请输入a的值："</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">224</span><span class="token punctuation">.</span>            b <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请输入b的值："</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">225</span><span class="token punctuation">.</span>            p <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请输入p的值："</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#用作模运算  </span>
+<span class="token number">226</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 条件满足判断  </span>
+<span class="token number">227</span><span class="token punctuation">.</span>            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token operator">*</span><span class="token punctuation">(</span>a<span class="token operator">**</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">27</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">%</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token number">228</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您输入的参数有误，请重新输入！！！\n"</span><span class="token punctuation">)</span>  
+<span class="token number">229</span><span class="token punctuation">.</span>            <span class="token keyword">else</span><span class="token punctuation">:</span>  
+<span class="token number">230</span><span class="token punctuation">.</span>                <span class="token keyword">break</span>  
+<span class="token number">231</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true">#利用隐函数画出椭圆曲线大致的图  </span>
+<span class="token number">232</span><span class="token punctuation">.</span>        ezplot <span class="token operator">=</span> <span class="token keyword">lambda</span> expr<span class="token punctuation">:</span> plot_implicit<span class="token punctuation">(</span>parse_expr<span class="token punctuation">(</span>expr<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">233</span><span class="token punctuation">.</span>        ttte <span class="token operator">=</span><span class="token string">'x*x*x+x*'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">'+'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'-y*y'</span>  
+<span class="token number">234</span><span class="token punctuation">.</span>        ezplot<span class="token punctuation">(</span>ttte<span class="token punctuation">)</span>  
+<span class="token number">235</span><span class="token punctuation">.</span>        mp<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token number">236</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true">#确认输入图谱  </span>
+<span class="token number">237</span><span class="token punctuation">.</span>        tur <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请确曲线：1确认，0退出\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">238</span><span class="token punctuation">.</span>        <span class="token keyword">if</span> tur <span class="token operator">!=</span><span class="token number">0</span> <span class="token punctuation">:</span>  
+<span class="token number">239</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 输出椭圆曲线散点图  </span>
+<span class="token number">240</span><span class="token punctuation">.</span>            get_graph<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">241</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 选点作为G点  </span>
+<span class="token number">242</span><span class="token punctuation">.</span>            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"1：在如上坐标系中选一个值为G的坐标"</span><span class="token punctuation">)</span>  
+<span class="token number">243</span><span class="token punctuation">.</span>            G_x <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"1：请输入选取的x坐标值："</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">244</span><span class="token punctuation">.</span>            G_y <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"1：请输入选取的y坐标值："</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">245</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 获取椭圆曲线的阶  </span>
+<span class="token number">246</span><span class="token punctuation">.</span>            n <span class="token operator">=</span> get_rank<span class="token punctuation">(</span>G_x<span class="token punctuation">,</span> G_y<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">247</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># user1生成私钥，小key  </span>
+<span class="token number">248</span><span class="token punctuation">.</span>            key <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"1：请输入私钥小key（&lt;&amp;#123;&amp;#125;）："</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">249</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># user1生成公钥，大KEY  </span>
+<span class="token number">250</span><span class="token punctuation">.</span>      
+<span class="token number">251</span><span class="token punctuation">.</span>      
+<span class="token number">252</span><span class="token punctuation">.</span>            KEY_x<span class="token punctuation">,</span> kEY_y <span class="token operator">=</span> get_ng<span class="token punctuation">(</span>G_x<span class="token punctuation">,</span> G_y<span class="token punctuation">,</span> key<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">253</span><span class="token punctuation">.</span>      
+<span class="token number">254</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># user2阶段  </span>
+<span class="token number">255</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># user2拿到user1的公钥KEY，Ep(a,b)阶n，加密需要加密的明文数据  </span>
+<span class="token number">256</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 加密准备  </span>
+<span class="token number">257</span><span class="token punctuation">.</span>            k <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"2：请输入一个整数k（&lt;&amp;#123;&amp;#125;）用于求kG和kQ："</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token number">258</span><span class="token punctuation">.</span>            k_G_x<span class="token punctuation">,</span> k_G_y <span class="token operator">=</span> get_ng<span class="token punctuation">(</span>G_x<span class="token punctuation">,</span> G_y<span class="token punctuation">,</span> k<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># kG  </span>
+<span class="token number">259</span><span class="token punctuation">.</span>            k_Q_x<span class="token punctuation">,</span> k_Q_y <span class="token operator">=</span> get_ng<span class="token punctuation">(</span>KEY_x<span class="token punctuation">,</span> kEY_y<span class="token punctuation">,</span> k<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># kQ  </span>
+<span class="token number">260</span><span class="token punctuation">.</span>      
+<span class="token number">261</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 加密  </span>
+<span class="token number">262</span><span class="token punctuation">.</span>            plain_text <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token string">"2：请输入需要加密的字符串:"</span><span class="token punctuation">)</span>  
+<span class="token number">263</span><span class="token punctuation">.</span>            plain_text <span class="token operator">=</span> plain_text<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token number">264</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># plain_text = int(input("user1：请输入需要加密的密文："))  </span>
+<span class="token number">265</span><span class="token punctuation">.</span>            c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  
+<span class="token number">266</span><span class="token punctuation">.</span>            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"密文为："</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>  
+<span class="token number">267</span><span class="token punctuation">.</span>            <span class="token keyword">for</span> char <span class="token keyword">in</span> plain_text<span class="token punctuation">:</span>  
+<span class="token number">268</span><span class="token punctuation">.</span>                intchar <span class="token operator">=</span> ord<span class="token punctuation">(</span>char<span class="token punctuation">)</span>  
+<span class="token number">269</span><span class="token punctuation">.</span>                cipher_text <span class="token operator">=</span> intchar <span class="token operator">*</span> k_Q_x  
+<span class="token number">270</span><span class="token punctuation">.</span>                c<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>k_G_x<span class="token punctuation">,</span> k_G_y<span class="token punctuation">,</span> cipher_text<span class="token punctuation">]</span><span class="token punctuation">)</span>  
+<span class="token number">271</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"(&amp;#123;&amp;#125;,&amp;#123;&amp;#125;),&amp;#123;&amp;#125;"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>k_G_x<span class="token punctuation">,</span> k_G_y<span class="token punctuation">,</span> cipher_text<span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">"-"</span><span class="token punctuation">)</span>  
+<span class="token number">272</span><span class="token punctuation">.</span>      
+<span class="token number">273</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># user1阶段  </span>
+<span class="token number">274</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 拿到user2加密的数据进行解密  </span>
+<span class="token number">275</span><span class="token punctuation">.</span>            <span class="token comment" spellcheck="true"># 知道 k_G_x,k_G_y，key情况下，求解k_Q_x,k_Q_y是容易的，然后plain_text = cipher_text/k_Q_x  </span>
+<span class="token number">276</span><span class="token punctuation">.</span>            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\n1解密得到明文："</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>  
+<span class="token number">277</span><span class="token punctuation">.</span>            <span class="token keyword">for</span> charArr <span class="token keyword">in</span> c<span class="token punctuation">:</span>  
+<span class="token number">278</span><span class="token punctuation">.</span>                decrypto_text_x<span class="token punctuation">,</span> decrypto_text_y <span class="token operator">=</span> get_ng<span class="token punctuation">(</span>charArr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> charArr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> a<span class="token punctuation">,</span> p<span class="token punctuation">)</span>  
+<span class="token number">279</span><span class="token punctuation">.</span>                <span class="token keyword">print</span><span class="token punctuation">(</span>chr<span class="token punctuation">(</span>charArr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">//</span> decrypto_text_x<span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>  
+<span class="token number">280</span><span class="token punctuation">.</span>      
+<span class="token number">281</span><span class="token punctuation">.</span>    <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>  
+<span class="token number">282</span><span class="token punctuation">.</span>        <span class="token comment" spellcheck="true">#调用函数,作为程序的入口,自定义程序运行顺序  </span>
+<span class="token number">283</span><span class="token punctuation">.</span>        main<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+<span class="token number">284</span><span class="token punctuation">.</span>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\n结束"</span><span class="token punctuation">)</span> </code></pre>
+<p>以上便是本文所有内容了，如果喜欢请收藏本站</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/blog/about" rel="external nofollow noreferrer">Friats</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://friats.gitee.io/blog/2020/03/02/ecc/">https://friats.gitee.io/blog/2020/03/02/ecc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/blog/about" target="_blank">Friats</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/blog/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">加密算法</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/blog/2020/03/02/ecc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/15.jpg" class="responsive-img" alt="ECC加密算法">
+                        
+                        <span class="card-title">ECC加密算法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            利用Python实现ECC加密算法！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/ECC/" class="post-category">
+                                    ECC
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">加密算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/2020/02/20/kalma-filter/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/blog/medias/featureimages/12.jpg" class="responsive-img" alt="Kalma Filter学习笔记">
+                        
+                        <span class="card-title">Kalma Filter学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于Kalma Filter的公式推导！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/blog/categories/Kalma-Filter/" class="post-category">
+                                    Kalma_Filter
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/blog/tags/Kalma-Filter/">
+                        <span class="chip bg-color">Kalma_Filter</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/blog/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/blog/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/blog/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #0F2540;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="7567797652#503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#0F2540'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/blog/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/blog/about" target="_blank">friats</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">6.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link">
+    <a href="https://github.com/Friats" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2393250872@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2393250872" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2393250872" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/blog/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/blog/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/noSomeKey.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+    <script src="/blog/libs/materialize/materialize.min.js"></script>
+    <script src="/blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/blog/libs/aos/aos.js"></script>
+    <script src="/blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/blog/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/blog/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
