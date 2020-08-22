@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-08-22T07:44:29.965Z</updated>
+  <updated>2020-08-22T14:09:42.596Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模糊PID二</title>
+    <link href="https://friats.gitee.io/2020/03/29/pid-1/"/>
+    <id>https://friats.gitee.io/2020/03/29/pid-1/</id>
+    <published>2020-03-28T18:05:26.000Z</published>
+    <updated>2020-08-22T14:09:42.596Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;上回我们简略的了解了一下模糊PID与普通PID的一些区别，这会我们来更进一步的了解其在工业领域的应用中会有什么样的表现&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="PID" scheme="https://friats.gitee.io/categories/PID/"/>
+    
+    
+    <category term="模糊PID" scheme="https://friats.gitee.io/tags/%E6%A8%A1%E7%B3%8APID/"/>
+    
+  </entry>
   
   <entry>
     <title>模糊PID</title>

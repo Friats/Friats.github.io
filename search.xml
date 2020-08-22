@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>模糊PID二</title>
+      <link href="/blog/2020/03/29/pid-1/"/>
+      <url>/blog/2020/03/29/pid-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上回我们简略的了解了一下模糊PID与普通PID的一些区别，这会我们来更进一步的了解其在工业领域的应用中会有什么样的表现</p><h1 id="1-控制机械臂"><a href="#1-控制机械臂" class="headerlink" title="1.控制机械臂"></a>1.控制机械臂</h1><p>这里我们来了解一下PID在机械臂控制方面的应用</p><p>在实际应用中，我们的机械臂往往会需要拿起一些重物，而当我们调好空载的PID的时候，我们拿起重物就会发现机械臂并不能很好的打到我们预期的地点，往往会伴随着误差，或者响应缓慢，而当我们调试好负载PID的时候又会出现空载机械臂响应出问题，并且，如果我们每次拿的重物不同我们就要重调PID，那么不是很麻烦么？</p><p>所以这种时候，我们可以试试我们的模糊PID</p><p>我们可以将传递函数的分子调大调小来模拟现实生活中不同机械臂的响应</p><p>我们将分子缩小十倍：</p><p><img src="4.png"></p><p>这里我们可以看见系统变得不稳定了，两种PID的超调量都开始增加，甚至出现了抖动，让我们进一步缩小分子：</p><p><img src="5.png"></p><p>可以看到，传统PID在500s内不能很好的追上期望，而我们的模糊PID虽然稳定下来时并不能很好的锁定在期望值上，但是可以看见模糊PID还是能很快的逼近期望值</p><p>好了，下面我们来增大分母，增大个十倍：</p><p><img src="6.png"></p><p>可以明显的看出来，系统变得稳定了，两种PID的输出都变得十分稳定，这时候，我们在增大分子也没有太大的作用了</p><p>至此上面一个示例再一次证明了模糊PID在应对不同情况下的输入都有良好的响应</p><hr><p>假设我们有一个n轴的机械臂，几轴无所谓，我们只关心其中一个轴的运动就可以了，我们只观察PID在这一个轴中的应用，这里我们打开上次的simulink系统，试着去改一下我们的输入，让它更符合我们实际生活中的控制方式，对于一个机械臂，如果我们只朝着一个方向动就会有使用风险，比如卡死烧坏电机，不能很好的调速等等</p><p>所以我们需要改变控制方式，就以我目前新做的这个系统举例：</p><p><img src="0.png"></p><p>模糊PID和PID的参数并未做修改，只是将期望变成一个随时变化的数：</p><p><img src="1.png"></p><p>上图我们可以看到，这样的控制方式已经很符合机械臂单轴的运作方式了，接下来，让我们将其输入系统中</p><p>得到下面两幅图：</p><p><img src="2.png"></p><p><img src="3.png"></p><p>上面两幅图可以清晰直观的看到，当输入量不断变化的时候，传统PID并不能很好的跟跟随上期望的变化，而且效果十分的差，即使再怎么调试参数，传统PID的响应都不可能迅速的跟上变化的期望，即使我每一个期望值都给了10s，传统PID也不能在10s内达到所期望的数值</p><p>而反观模糊PID，我们可以看到，虽然有些瑕疵，但模糊PID总是能在规定时间内达到期望值，虽然变化曲线有些不美观，达到预期的时间也较长，不过这些都可以修改模糊规则表来达到我们预期的效果，不过这些都是后话了，正是因为大多数控制系统中输入参数并不是固定值，所以我们更需要模糊PID</p><p>这时我们在结合一下之前第一个示例，调大分子看看两种PID的响应状况：</p><p><img src="7.png"></p><p><img src="8.png"></p><p>调小分子看看两种PID的响应状况：</p><p><img src="9.png"></p><p><img src="10.png"></p><p>我们可以看见，无论是如何调整分子，模糊PID却不会有较大的变化，而传统PID却有些许波动</p><p>本次模糊PID仿真到此结束，喜欢的请收藏本站</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> PID </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模糊PID </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>模糊PID</title>
       <link href="/blog/2020/03/21/pid/"/>
       <url>/blog/2020/03/21/pid/</url>
