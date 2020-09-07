@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-08-22T14:09:42.596Z</updated>
+  <updated>2020-09-07T04:45:04.308Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于FOC的学习笔记</title>
+    <link href="https://friats.gitee.io/2020/04/08/moter/"/>
+    <id>https://friats.gitee.io/2020/04/08/moter/</id>
+    <published>2020-04-08T01:04:08.000Z</published>
+    <updated>2020-09-07T04:45:04.308Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="电机控制" scheme="https://friats.gitee.io/categories/%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/"/>
+    
+    
+    <category term="电机控制" scheme="https://friats.gitee.io/tags/%E7%94%B5%E6%9C%BA%E6%8E%A7%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Opencv学习笔记</title>
+    <link href="https://friats.gitee.io/2020/04/03/cv-0/"/>
+    <id>https://friats.gitee.io/2020/04/03/cv-0/</id>
+    <published>2020-04-03T06:33:42.000Z</published>
+    <updated>2020-09-07T05:12:22.859Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;计算机视觉在生活中已经成为了一个不可或缺的部分，下面就来总结一下我过去所学的那些关于Opencv的知识&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="Opencv" scheme="https://friats.gitee.io/categories/Opencv/"/>
+    
+    
+    <category term="Opencv" scheme="https://friats.gitee.io/tags/Opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>模糊PID二</title>
