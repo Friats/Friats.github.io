@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-10-05T05:39:39.539Z</updated>
+  <updated>2020-10-15T10:55:11.502Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Opencv基础知识</title>
+    <link href="https://friats.gitee.io/2020/10/13/cv1/"/>
+    <id>https://friats.gitee.io/2020/10/13/cv1/</id>
+    <published>2020-10-13T11:06:42.000Z</published>
+    <updated>2020-10-15T10:55:11.502Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;常识&lt;/p&gt;
+&lt;p&gt;Opencv读取格式是BGR&lt;/p&gt;
+&lt;p&gt;BGR三通道值对应颜色深度0-255&lt;/p&gt;
+&lt;p&gt;灰度图只有一个通道表示亮度&lt;/p&gt;
+&lt;p&gt;图像大小用矩阵表示&lt;/p&gt;
+&lt;p&gt;w h，表示像素点多少&lt;/p&gt;
+&lt;p&gt;1.14M图片=720×547×3×8</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础</title>
+    <link href="https://friats.gitee.io/2020/05/20/linux/"/>
+    <id>https://friats.gitee.io/2020/05/20/linux/</id>
+    <published>2020-05-20T14:55:33.000Z</published>
+    <updated>2020-10-31T04:32:41.544Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h1&gt;&lt;h2 id=&quot;1-1-Linux内核&quot;&gt;&lt;a href=&quot;#1-1-Linux内核&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://friats.gitee.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://friats.gitee.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>现代控制理论</title>
