@@ -6,7 +6,7 @@
   <link href="https://friats.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://friats.gitee.io/"/>
-  <updated>2020-10-15T10:55:11.502Z</updated>
+  <updated>2023-05-21T10:37:06.388Z</updated>
   <id>https://friats.gitee.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MBD环境搭建</title>
+    <link href="https://friats.gitee.io/2023/05/21/mbd-environment/"/>
+    <id>https://friats.gitee.io/2023/05/21/mbd-environment/</id>
+    <published>2023-05-21T09:59:40.000Z</published>
+    <updated>2023-05-21T10:37:06.388Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1、环境说明&quot;&gt;&lt;a href=&quot;#1、环境说明&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://friats.gitee.io/categories/Hexo/"/>
+    
+    
+    <category term="MBD" scheme="https://friats.gitee.io/tags/MBD/"/>
+    
+  </entry>
   
   <entry>
     <title>Opencv基础知识</title>

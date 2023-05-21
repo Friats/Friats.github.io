@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MBD环境搭建</title>
+      <link href="/blog/2023/05/21/mbd-environment/"/>
+      <url>/blog/2023/05/21/mbd-environment/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1、环境说明"><a href="#1、环境说明" class="headerlink" title="1、环境说明"></a>1、环境说明</h1><blockquote><p>软件及对应版本</p><p>Matlab：2023a</p><p>开发板：TI Piccolo 280049C LaunchPad</p><p>配套开发软件：Code Composer Studio 11.1.0</p><p>C2000Ware：C2000Ware_4_01_00_00（官方推荐版本：C2000Ware_4_00_00_00）</p></blockquote><h1 id="2、配置过程"><a href="#2、配置过程" class="headerlink" title="2、配置过程"></a>2、配置过程</h1><h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>打开Matlab，点击上方标题栏中的附加功能，选择获取硬件支持包：</p><p><img src="0.png"></p><p>在弹出的界面中搜索C2000安装第一个即可，可能在其他教程中会让搜索Embedded coder support package for TI C2000等，但是在Matlab 2023a中，C2000 Microcontroller Blockset即为官方推荐版本</p><p><img src="1.png"></p><p>耐心等待下载完成后，可以根据相应提示自动安装C2000Ware等软件</p><p>随后可以新建工程或是直接通过此界面根据提示操作</p><p><img src="2.png"></p><p>在Matlab命令窗口运行</p><p><code>open_system('c28069_blink.slx');</code></p><p><img src="3.png"></p><p>输入完成回车后，会弹出以上界面，根据自身开发板对Hardware Board进行修改，我这里使用的是官方TI Piccolo 280049C LaunchPad开发板，所以将开发版修改成280049C LaunchPad</p><p>修改完成后要确认LED的IO和仿真环境下的IO是否一致，不是的话要根据需求更改，我这里IO口是GPIO 23</p><p><img src="4.png"></p><p>更改完成后，点击Run on board即可将程序下入开发板中，可以观察到开发板的LED灯已经开始闪烁，第一次运行的时候会比较慢，需要等他编译一会儿</p><p>如果你不慎关闭了安装完成后的提示界面，也可以直接使用simulink来搭建，只需要三步即可</p><p>一、</p><p>新建一个空的工程，然后在元件库中搭建出所需逻辑，并修改对应IO口</p><p><img src="5.png"></p><p>搭建完成后，点击标题栏中的模型设置，在弹出窗口中硬件实现界面里设置好自己的开发板即可</p><p><img src="6.png"></p><p>设置完成后，点击编译部署和启动，这里可能会有些慢，需要等待一段时间，第一次运行时会进入Debug模式，此时下方会出现计时，开发板也会跟着计时运作</p><p><img src="7.png"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MBD </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Opencv基础知识</title>
       <link href="/blog/2020/10/13/cv1/"/>
       <url>/blog/2020/10/13/cv1/</url>
