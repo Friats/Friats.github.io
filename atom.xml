@@ -6,7 +6,7 @@
   <link href="https://friats.github.io/atom.xml" rel="self"/>
   
   <link href="https://friats.github.io/"/>
-  <updated>2023-05-21T10:39:12.492Z</updated>
+  <updated>2023-08-10T08:44:07.215Z</updated>
   <id>https://friats.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ClassB</title>
+    <link href="https://friats.github.io/2023/08/10/classb/"/>
+    <id>https://friats.github.io/2023/08/10/classb/</id>
+    <published>2023-08-10T06:33:09.000Z</published>
+    <updated>2023-08-10T08:44:07.215Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="IEC60730" scheme="https://friats.github.io/categories/IEC60730/"/>
+    
+    
+    <category term="IEC60730" scheme="https://friats.github.io/tags/IEC60730/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MBD环境搭建</title>
     <link href="https://friats.github.io/2023/05/21/mbd-environment/"/>
     <id>https://friats.github.io/2023/05/21/mbd-environment/</id>
     <published>2023-05-21T09:59:40.000Z</published>
-    <updated>2023-05-21T10:39:12.492Z</updated>
+    <updated>2023-08-10T06:35:16.202Z</updated>
     
     
       
@@ -34,10 +59,36 @@
     
     
     
-    <category term="Hexo" scheme="https://friats.github.io/categories/Hexo/"/>
+    <category term="MBD" scheme="https://friats.github.io/categories/MBD/"/>
     
     
     <category term="MBD" scheme="https://friats.github.io/tags/MBD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>github无法clone问题</title>
+    <link href="https://friats.github.io/2021/02/20/gittimeout/"/>
+    <id>https://friats.github.io/2021/02/20/gittimeout/</id>
+    <published>2021-02-20T14:55:33.000Z</published>
+    <updated>2023-08-09T12:40:13.436Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;换了电脑之后发现，github虽然能挂梯子访问但怎么都clone不下来东西，试过网上CSDN等的一堆方法之后，依然无法访问&lt;br&gt;遂想起，ping一下github.com试试，果不其然，ping不通&lt;br&gt;总算想起来为啥不能clone了，dns污染&lt;/p&gt;
+&lt;p&gt;于是通过下</summary>
+        
+      
+    
+    
+    
+    <category term="git相关" scheme="https://friats.github.io/categories/git%E7%9B%B8%E5%85%B3/"/>
+    
+    
+    <category term="git相关" scheme="https://friats.github.io/tags/git%E7%9B%B8%E5%85%B3/"/>
     
   </entry>
   

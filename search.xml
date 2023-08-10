@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ClassB</title>
+      <link href="/2023/08/10/classb/"/>
+      <url>/2023/08/10/classb/</url>
+      
+        <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>储能类电器需要通过家庭用电安全标准，确保电器在使用过程中的软硬件均能安全运行，即使出现故障或失效也能在一定范围内保障用户的人身财产安全</p><p>IEC 60730标准适用的设备分成了以下三类：</p><ul><li>A类：不用于确保设备的安全性</li><li>B类：阻止受控设备上的不安全运行</li><li>C类：防止特殊危害</li></ul><p>这里本文只讨论B类安全</p><h1 id="1、认证需求资料-软硬件相关"><a href="#1、认证需求资料-软硬件相关" class="headerlink" title="1、认证需求资料(软硬件相关)"></a>1、认证需求资料(软硬件相关)</h1><p>资料清单如下：</p><p>软件设计规范：主要是功能安全需求规范以及功能安全系统的架构文件，此文件有相应示例文档，在此不多赘述</p><p>原理图Layout以及Bom</p><p>保护板Bom</p><p>关键元器件降额设计</p><p>软硬件接口文件：MCU的管脚定义、编号、功能、输入输出方向、模拟数字、信号定义等</p><p>软件编码规范：国际标准或是公司自身标准皆可</p><p>源代码或烧写代码</p><p>源代码审查报告：通过会议评审方式，对源代码中是否符合软件编码规范以及统一范式进行会议评审，通过此方式将代码整体逻辑展示，其余会议成员对表中各项示例进行分析评判，确认是否符合条例，并追加修改意见以及交付日期</p><p>软件架构设计文件：包括总体架构说明、模块调用关系、数据流、采用何种数据结构以及存储方式等</p><p>软件单元设计文件：对架构设计文件中各个模块内容做详细说明，包括流程图、调用关系、输入输出参数等信息</p><p>软件静态测试报告：静态测试主要对代码中符合编码规范部分进行统计，最终输出一个报告，包含代码行数通过率等信息，这里使用Understand即可</p><p>软件动态测试报告：动态测试主要是对软件覆盖率、测试用例通过项进行检查，最终得到一个完整的测试报告，工具会对每一个函数进行单元测试，大多数情况下都需要自己编写测试用例，这里可以使用软件：tessy、gtest和pytest</p><p>软硬件集成测试报告：这里根据功能安全需求，对各种保护、失效进行详尽的测试，如果可以尽量包含边界测试和结果</p><p>参数配置文件</p><p>通讯协议文件</p><p>故障注入测试报告：通过仿真对功能安全库的验证，包括CPU寄存器异常数据注入、CRC错误校验、时钟树偏移检测、RAM栈溢出检测要求注入之后，软件能跳入安全模式中，除此之外，还应包含失效检测等测试结果，如果有的话可以包含硬件FMEA中失效部分的注入测试</p><p>BMS产品配置管理文件：开发软件及其版本</p><p>元器件FMEA报告</p><p>电池规格书</p><p>以上只是和研发相关的一些文件例子，这里只是举例说明，完成了上述部分只是完成了功能安全的后半部分工作，前半部分则是功能安全库的移植，这里引出我们第二部分内容</p><h2 id="2、功能安全库移植"><a href="#2、功能安全库移植" class="headerlink" title="2、功能安全库移植"></a>2、功能安全库移植</h2><p>大部分芯片厂商都推出了符合功能安全内容的历程及对应的库文件</p><p>这里我们以ST的为例</p><p>目前已有多个版本</p><p><img src="1.png"></p><p>这里以G0系列为例有两种方式，其一，部分功能安全库已集成到stm32cube配置里了，可以根据需求勾选并生成，这种方式我们就不说了</p><p>这里重点说说第二种，通过手动移植的方式，这里要注意的是，我使用的版本是较为老的版本2.3.0，新版本中，对于这些内容做了优化，这里不多赘述</p><p>移植的步骤：</p><p>1、将图中内容移植到你的工程中，要注意，这里使用的都是Hal库编写，如果是其他的库，可能得自己手动实现了</p><p><img src="2.png"></p><p><img src="3.png"></p><p><img src="4.png" alt="仅移植图中选中的内容即可"></p><p>移植之后，主函数循环体前增加</p><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* This is where the main self-test routines are initialized */</span>  <span class="token function">STL_InitRunTimeChecks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>主函数循环中增加</p><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* This is where the main self-test routines are executed */</span>    <span class="token function">STL_DoRunTimeChecks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>添加完成之后，整体工程已经初见雏形，接下来需要对STL库的做一些小修改</p><p><img src="5.png" alt="删除选中部分内容即可"></p><p>如果你的程序中已经存在看门狗，去掉上面的看门狗，如果程序中没有保留</p><p><img src="6.png" alt="同一文件中"></p><p>根据硬件晶振和系统时钟树修改即可</p><p><img src="7.png" alt="同一文件中"></p><p>这里如果程序存在Bootloader，修改ROM_START的内容，这个文件到此修改完毕</p><p><img src="8.png"></p><p>此文件中复制262行开始的内容到自己的.s文件中</p><p><img src="9.png"></p><p>图示选中函数即为安全模式所属函数，一切功能安全检测失效均跳入此模块，在此模块中添加安全模式下的运行内容即可</p><p><img src="10.png" alt="同一文件中"></p><p>将自己的时钟函数替换此函数</p><p><img src="11.png"></p><p><img src="12.png"></p><p><img src="13.png"></p><p>将此文件夹下的两个中断和一个函数内容复制到自己的工程里对应位置</p><p>此时上述文件内容满足使用需求，记得删除着这些函数中打印函数和串口初始化内容</p><p>到这里，移植已经完成了一大半</p><h2 id="3、其他配置"><a href="#3、其他配置" class="headerlink" title="3、其他配置"></a>3、其他配置</h2><p><img src="14.png"></p><p>在此调整配置内容和此图一样</p><p><img src="15.png"></p><p>修改第一处鼠标选中内容的大小以及起始地址，如果第二处选中位置有报错，修改UNINIT后的大小</p><p><img src="16.png"></p><p><img src="17.png"></p><p>在这两处增加两个.ini文件</p><p>以上便是修改的全部内容，这里要注意两个事情</p><p>1、CRC校验码记得每次编译固件修改成对的值，当然也可用st移植文档中的方法去自动生成，不过测试结果表明，需要自己修改bat文件</p><p>2、如果你的程序使用了RTC，那么你可能需要做一个SRAM变量，每次上电尽早读取备份内容，以免有处初始化将备份内容清空</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> IEC60730 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IEC60730 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MBD环境搭建</title>
       <link href="/2023/05/21/mbd-environment/"/>
       <url>/2023/05/21/mbd-environment/</url>
@@ -13,7 +38,7 @@
       
       <categories>
           
-          <category> Hexo </category>
+          <category> MBD </category>
           
       </categories>
       
@@ -21,6 +46,31 @@
         <tags>
             
             <tag> MBD </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github无法clone问题</title>
+      <link href="/2021/02/20/gittimeout/"/>
+      <url>/2021/02/20/gittimeout/</url>
+      
+        <content type="html"><![CDATA[<p>换了电脑之后发现，github虽然能挂梯子访问但怎么都clone不下来东西，试过网上CSDN等的一堆方法之后，依然无法访问<br>遂想起，ping一下github.com试试，果不其然，ping不通<br>总算想起来为啥不能clone了，dns污染</p><p>于是通过下面网页</p><p><a href="https://ping.chinaz.com/assets-cdn.github.com">https://ping.chinaz.com/assets-cdn.github.com</a></p><p>输入对应网址进行ping检测，但是发现大陆域名也可以访问，但是我的电脑却无法访问，可能和当下的网络环境有关<br>于是找到德国对应的ip地址，在Hosts文件中做修改即可</p><p>最下面一行增加以下内容，根据ping的ip替换即可</p><pre><code>140.82.121.3 github.com140.82.121.9 nodeload.github.com140.82.121.5 api.github.com151.101.1.194 github.global.ssl.fastly.net185.199.108.153 assets-cdn.github.com</code></pre><p>写入之后通过命令行，执行</p><pre><code>ipconfig/flushdns</code></pre><p>更新后，ping一下能ping通即可进行无魔法上网也能直连github</p><p>对了，如果Win11电脑中，hosts文件内容是空的，需要运行以下命令去重新生成hosts文件</p><pre><code>for /f %P in ('dir %windir%\WinSxS\hosts /b /s') do copy %P %windir%\System32\drivers\etc &amp;amp; echo %P &amp;amp; Notepad %P</code></pre><p>命令需要在管理员模式下才能进行</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> git相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git相关 </tag>
             
         </tags>
       
