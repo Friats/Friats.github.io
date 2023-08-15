@@ -6,7 +6,7 @@
   <link href="https://friats.github.io/atom.xml" rel="self"/>
   
   <link href="https://friats.github.io/"/>
-  <updated>2023-08-10T08:44:07.215Z</updated>
+  <updated>2023-08-10T11:31:57.419Z</updated>
   <id>https://friats.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ClassB</title>
+    <title>电池自加热</title>
+    <link href="https://friats.github.io/2023/08/11/battey-heat/"/>
+    <id>https://friats.github.io/2023/08/11/battey-heat/</id>
+    <published>2023-08-11T06:33:09.000Z</published>
+    <updated>2023-08-10T11:31:57.419Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;​        本文主要是对寒冷地区电池用电难问题的一个探讨，主要旨在了解和探讨&lt;/p&gt;
+&lt;h1 id=&quot;1、自加热&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="BMS" scheme="https://friats.github.io/categories/BMS/"/>
+    
+    
+    <category term="BMS" scheme="https://friats.github.io/tags/BMS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IEC 60730 ClassB标准</title>
     <link href="https://friats.github.io/2023/08/10/classb/"/>
     <id>https://friats.github.io/2023/08/10/classb/</id>
     <published>2023-08-10T06:33:09.000Z</published>
-    <updated>2023-08-10T08:44:07.215Z</updated>
+    <updated>2023-08-10T11:30:13.664Z</updated>
     
     
       
@@ -38,6 +64,32 @@
     
     
     <category term="IEC60730" scheme="https://friats.github.io/tags/IEC60730/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bms_base</title>
+    <link href="https://friats.github.io/2023/08/10/bms-base/"/>
+    <id>https://friats.github.io/2023/08/10/bms-base/</id>
+    <published>2023-08-10T06:33:09.000Z</published>
+    <updated>2023-08-13T13:24:23.801Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;​        本文主要是对BMS行业内容的一个扫盲，纯属个人经历及网上资料得出的结论，如有不恰当的地方欢迎指出&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="BMS" scheme="https://friats.github.io/categories/BMS/"/>
+    
+    
+    <category term="BMS" scheme="https://friats.github.io/tags/BMS/"/>
     
   </entry>
   
